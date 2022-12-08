@@ -9,4 +9,19 @@
             (#{email}, #{amount}, #{uid})
     </insert>
 
+    <select id="selectAllPayment" resultType="hashmap" parameterType="string">
+        select
+            email, amount, uid, indate
+        from
+            payment
+        where email=#{email}
+    </select>
+
+    <select id="selectTotalPayment" resultType="double" parameterType="string">
+        select
+            sum(amount)
+        from
+            payment
+        where email=#{email}
+    </select>
 </mapper>

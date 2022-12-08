@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.coinweb.mapper.BuyMapper">
+    <insert id="insertBuy" parameterType="hashmap">
+        insert into buy
+            (email, coinId, name, price, amount, total)
+        values
+            (#{email}, #{coinId}, #{name}, #{price}, #{amount}, #{total})
+    </insert>
+
+    <select id="selectAllBuy" resultType="hashmap" parameterType="string">
+        select
+            email, coinId, name, price, amount, total, indate
+        from
+            buy
+        where email=#{email}
+    </select>
+
+    <select id="selectTotalBuy" resultType="double" parameterType="string">
+        select
+            sum(total)
+        from
+            buy
+        where email=#{email}
+    </select>
+
+</mapper>

@@ -33,12 +33,7 @@ public class PageController {
     }
 
     @GetMapping("/goMarket")
-    public String goMarket(HttpSession session) {
-        String email = (String) session.getAttribute("email");
-        if (email == null || email.equals("")) {
-            return "login";
-        }
-
+    public String goMarket() {
         return "market";
     }
 

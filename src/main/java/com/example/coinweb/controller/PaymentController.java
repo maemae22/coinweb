@@ -4,12 +4,11 @@ import com.example.coinweb.service.MemberService;
 import com.example.coinweb.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class PaymentController {
@@ -23,5 +22,11 @@ public class PaymentController {
         params.put("email", session.getAttribute("email"));
         service.insertPayment(params);
         return "index";
+    }
+
+    @RequestMapping("/pointList")
+    public @ResponseBody List<HashMap<String, Object>> pointList(HttpSession session) {
+        String email = (String) session.getAttribute("email");
+        return service.selectAllPayment(email);
     }
 }
